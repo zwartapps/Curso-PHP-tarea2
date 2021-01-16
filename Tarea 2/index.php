@@ -9,6 +9,7 @@ $y = "";
 $fraseX = "";
 $fraseY = "";
 $producto = "";
+$i = "";
 
 if(isset($_POST['X'])){
     $x = $_POST['X'];
@@ -19,6 +20,16 @@ if(isset($_POST['Y'])){
 }
 
 $producto = $x * $y;
+
+
+/*Calculamos la suma de 1 a X*/
+for($i=1 ; $i<=$x; $i++){
+ echo $i . "<br>";
+   $j = $i ;
+   
+   $j = $i + $i;
+   echo "J = " . $j . "<br>";
+}
 
 
 /*Comprobamos que son numeros (podriamos haber usado en el formulario input type number)*/
