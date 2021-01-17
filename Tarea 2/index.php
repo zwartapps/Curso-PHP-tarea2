@@ -4,6 +4,7 @@
 session_name('Tarea2');
 session_start();
 
+//declaramos variables
 $x = "";
 $y = "";
 $fraseX = "";
@@ -12,7 +13,7 @@ $producto = "";
 $suma = "";
 $resultado = "";
 
-
+//damos los valores introducidos a las variables
 if(isset($_POST['X'])){
     $x = $_POST['X'];
 }
@@ -20,11 +21,6 @@ if(isset($_POST['X'])){
 if(isset($_POST['Y'])){
     $y = $_POST['Y'];
 }
-
-if(isset($_POST['suma'])){
-    $suma = $_POST['suma'];
-}
-
 
 //Producto de X * Y solamente si son numeros
 function producto($x, $y){
