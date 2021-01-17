@@ -105,10 +105,11 @@ if (isset($_POST['reset'])) {
 if(isset($_POST['calcular'])){
     echo $fraseX . "<br>";
     echo $fraseY . "<br>";        
-    $resultado = suma($x)/producto($x, $y);
+    $resultado = suma($x) / producto($x, $y);
     //redondeamos resultado con 2 decimales
     echo "Z = " . round($resultado, 2);
-}  
+}
+
 ?>
 
 </div>    
