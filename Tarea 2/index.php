@@ -9,6 +9,8 @@ $y = "";
 $fraseX = "";
 $fraseY = "";
 $producto = "";
+$suma = "";
+$resultado = "";
 
 
 if(isset($_POST['X'])){
@@ -19,14 +21,19 @@ if(isset($_POST['Y'])){
     $y = $_POST['Y'];
 }
 
-//Prodcuto de X * Y solamente si son numeros
-function producto($x, $y){
-    if(is_numeric($x) && is_numeric($y) ) {
-        $producto = $x*$y;
-        echo "El producto de X * Y = " . $producto;
-    } else echo "No se puede multiplicar valores no numericos";
+if(isset($_POST['suma'])){
+    $suma = $_POST['suma'];
 }
 
+
+//Producto de X * Y solamente si son numeros
+function producto($x, $y){
+    if(is_numeric($x) && is_numeric($y) ) {
+        $producto = $x * $y;
+        echo "El producto de X * Y = " . $producto . "<br>";
+        return $producto;
+    } else echo "No se puede multiplicar valores no numericos <br>";
+}
 
 /*Funcion para calcular la suma de 1 a X solamente si son numeros*/
 function suma($x){
@@ -39,22 +46,15 @@ function suma($x){
             $i++;       
         }
         echo "Suma de 1 al X = " . $suma . "<br>";
-    } else echo "No se puede sumar valores no numericos <br>";
+        return $suma;
+    } else echo "No se puede sumar valores no numericos <br>";  
 }
-
-
-
-
-function resultado(){
-    
-}
-
 
 
 /*Comprobamos que son numeros (podriamos usar en el formulario input type number)*/
 if(!is_numeric($x)) {
     $fraseX = $x. " no es un valor numerico!";
-}   else $fraseX = "Valor de X = " . $x;
+} else $fraseX = "Valor de X = " . $x;
 
 
 if(!is_numeric($y)) {
@@ -72,7 +72,6 @@ if (isset($_POST['reset'])) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 
@@ -98,30 +97,25 @@ if (isset($_POST['reset'])) {
 <div class="form-group">
 <label for="Y">Valor Y</label>
 <input id="Y" type="text" name="Y" size="50">
-</div>
+</div>      
 <button class="btn btn-primary" type="submit" name="calcular">Calcular</button>
 <button class="btn btn-danger" type="submit" name="reset">Resetear</button>
 </form>
-
+<br>
 
 <?php
 
+//Cuando se pulsa el boton se ejecutan todas las funciones
 if(isset($_POST['calcular'])){
     echo $fraseX . "<br>";
-    echo $fraseY . "<br>";
-    suma($x);
-    producto($x, $y);
-    
-    
-}
-
-
-
-
+    echo $fraseY . "<br>";        
+    $resultado = suma($x)/producto($x, $y);
+    //redondeamos resultado con 2 decimales
+    echo "Z = " . round($resultado, 2);
+}  
 ?>
 
-</div>
-
+</div>    
 
 </body>
 </html>
