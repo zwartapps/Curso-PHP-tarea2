@@ -9,7 +9,7 @@ $y = "";
 $fraseX = "";
 $fraseY = "";
 $producto = "";
-$i = "";
+
 
 if(isset($_POST['X'])){
     $x = $_POST['X'];
@@ -19,20 +19,39 @@ if(isset($_POST['Y'])){
     $y = $_POST['Y'];
 }
 
-$producto = $x * $y;
-
-
-/*Calculamos la suma de 1 a X*/
-for($i=1 ; $i<=$x; $i++){
- echo $i . "<br>";
-   $j = $i ;
-   
-   $j = $i + $i;
-   echo "J = " . $j . "<br>";
+//Prodcuto de X * Y solamente si son numeros
+function producto($x, $y){
+    if(is_numeric($x) && is_numeric($y) ) {
+        $producto = $x*$y;
+        echo "El producto de X * Y = " . $producto;
+    } else echo "No se puede multiplicar valores no numericos";
 }
 
 
-/*Comprobamos que son numeros (podriamos haber usado en el formulario input type number)*/
+/*Funcion para calcular la suma de 1 a X solamente si son numeros*/
+function suma($x){
+    if(is_numeric($x)){
+        $i = 1;
+        $suma = 0;
+        while($i <= $x){    
+            $suma = $i + $suma;
+            $i + $suma;
+            $i++;       
+        }
+        echo "Suma de 1 al X = " . $suma . "<br>";
+    } else echo "No se puede sumar valores no numericos <br>";
+}
+
+
+
+
+function resultado(){
+    
+}
+
+
+
+/*Comprobamos que son numeros (podriamos usar en el formulario input type number)*/
 if(!is_numeric($x)) {
     $fraseX = $x. " no es un valor numerico!";
 }   else $fraseX = "Valor de X = " . $x;
@@ -46,6 +65,8 @@ if(!is_numeric($y)) {
 if (isset($_POST['reset'])) {
     unset($x);
     unset($y);
+    unset($_POST['X']);
+    unset($_POST['Y']);
     session_destroy();
     header('index.php');
 }
@@ -78,19 +99,24 @@ if (isset($_POST['reset'])) {
 <label for="Y">Valor Y</label>
 <input id="Y" type="text" name="Y" size="50">
 </div>
-<button class="btn btn-primary" type="submit">Calcular</button>
+<button class="btn btn-primary" type="submit" name="calcular">Calcular</button>
 <button class="btn btn-danger" type="submit" name="reset">Resetear</button>
 </form>
 
 
 <?php
 
-echo $fraseX . "<br>";
+if(isset($_POST['calcular'])){
+    echo $fraseX . "<br>";
+    echo $fraseY . "<br>";
+    suma($x);
+    producto($x, $y);
+    
+    
+}
 
 
-echo $fraseY . "<br>";
 
-echo $producto;
 
 ?>
 
